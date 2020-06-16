@@ -13,12 +13,12 @@ import guru.springframework.services.map.VetServiceMap;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-	private OwnerService ownerService;
-	private VetService vetService;
+	private final OwnerService ownerService;
+	private final VetService vetService;
 	
 	public DataLoader(OwnerService ownerService, VetService vetService) {
-	this.ownerService = new OwnerServiceMap();
-	this.vetService = new VetServiceMap();
+	this.ownerService =ownerService;
+	this.vetService = vetService;
 	}
 	@Override
 	public void run(String... args) throws Exception {
@@ -36,7 +36,7 @@ public class DataLoader implements CommandLineRunner {
 		owner1.setLastName("Gleanne");
 		
 		ownerService.save(owner2);
-		System.out.println("Loaded Owners...");
+		System.out.println("Loaded Owners... " + ownerService.findAll().size());
 		
 		Vet vet1 = new Vet();
 		vet1.setId(1L);
