@@ -1,9 +1,12 @@
 package guru.springframework.bootstrap;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import guru.springframework.model.Owner;
+import guru.springframework.model.Pet;
 import guru.springframework.model.PetType;
 import guru.springframework.model.Vet;
 import guru.springframework.services.OwnerService;
@@ -41,14 +44,36 @@ public class DataLoader implements CommandLineRunner {
 
 		owner1.setFirstName("Michael");
 		owner1.setLastName("Wston");
-
+		owner1.setAddress("123 Clujului");
+		owner1.setCity("Oradea");
+		owner1.setTelephone("0259-390-123");
+		
+		Pet mikesPet = new Pet();
+		mikesPet.setPetType(saveDogType);
+		mikesPet.setOwner(owner1);
+		mikesPet.setBirthDate(LocalDate.now());
+		mikesPet.setName("Blacky");
+		owner1.getPets().add(mikesPet);
+		
 		ownerService.save(owner1);
 
 		Owner owner2 = new Owner();
 
 		owner2.setFirstName("Fiona");
 		owner2.setLastName("Gleanne");
+		owner1.setAddress("123 Aiudului");
+		owner1.setCity("Beius");
+		owner1.setTelephone("0259-423-566");
+		
 
+		Pet fionaPet = new Pet();
+		fionaPet.setPetType(savedCatType);
+		fionaPet.setOwner(owner2);
+		fionaPet.setBirthDate(LocalDate.now());
+		fionaPet.setName("Angela");
+		owner2.getPets().add(fionaPet);
+		
+		
 		ownerService.save(owner2);
 		System.out.println("Loaded Owners... " + ownerService.findAll().size());
 

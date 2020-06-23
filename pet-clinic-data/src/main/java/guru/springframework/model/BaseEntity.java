@@ -9,6 +9,7 @@ public class BaseEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 4497640308047961106L;
 	private Long id; 
+	private String name;
 	
 	public Long getId() {
 		return id;
@@ -20,5 +21,19 @@ public class BaseEntity implements Serializable{
 	
 	public boolean isNew() {
 		return this.id == null;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 }
